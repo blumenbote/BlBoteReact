@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { useTheme } from 'styled-components'
 import { useLocation } from 'react-router-dom'
-import MdClose from '@meronex/icons/md/MdClose'
+import MdArrowBack from '@meronex/icons/md/MdArrowBack'
 import {
   BusinessAndProductList,
   useEvent,
@@ -30,7 +30,7 @@ import { BusinessProductsList } from '../BusinessProductsList'
 import { ProductForm } from '../ProductForm'
 import { SearchBar } from '../SearchBar'
 import { CartFullPage } from '../CartFullPage'
-import { FlotingStatusBar } from '../FlotingStatusBar'
+// import { FlotingStatusBar } from '../FlotingStatusBar'
 const PIXELS_TO_SCROLL = 300
 const BusinessProductsListingUI = (props) => {
   const {
@@ -259,7 +259,7 @@ const BusinessProductsListingUI = (props) => {
         {(!loading && business?.id && !cartFullPage && curProduct) && (
           <ProductDetail>
             <BackMenu className='productDetail-close'>
-              <MdClose onClick={() => closeModalProductForm()} />
+              <MdArrowBack onClick={() => closeModalProductForm()} />
             </BackMenu>
             <ProductForm
               businessSlug={business?.slug}
@@ -370,11 +370,11 @@ const BusinessProductsListingUI = (props) => {
           />
         )}
       </ProductsContainer>
-      <FlotingStatusBar
+      {/* <FlotingStatusBar
         currentCart={currentCart}
         goToCart={openFullCart}
         businessName={business?.name}
-      />
+      /> */}
       {props.afterComponents?.map((AfterComponent, i) => (
         <AfterComponent key={i} {...props} />))}
       {props.afterElements?.map((AfterElement, i) => (

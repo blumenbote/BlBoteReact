@@ -18,13 +18,13 @@ const ProductOptionUI = (props) => {
 
   const [, t] = useLanguage()
 
-  let maxMin = `(${t('MIN', 'Min')}: ${option.min} / ${t('MAX', 'Max')}: ${option.max})`
+  let maxMin = `${t('MIN', 'Min')}. ${option.min} - ${t('MAX', 'Max')}. ${option.max}`
   if (option.min === 1 && option.max === 1) {
     maxMin = t('REQUIRED', 'Required')
   } else if (option.min === 0 && option.max > 0) {
-    maxMin = `(${t('MAX', 'Max')}: ${option.max})`
+    maxMin = `${t('MAX', 'Max')}. ${option.max}`
   } else if (option.min > 0 && option.max === 0) {
-    maxMin = `(${t('MIN', 'Min')}: ${option.min})`
+    maxMin = `${t('MIN', 'Min')}. ${option.min}`
   }
 
   return (

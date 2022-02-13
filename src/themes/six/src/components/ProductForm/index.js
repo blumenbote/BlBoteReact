@@ -6,7 +6,8 @@ import {
   ProductForm as ProductOptions,
   useSession,
   useLanguage,
-  useOrder
+  useOrder,
+  useUtils
 } from 'ordering-components'
 import { scrollTo } from '../../../../../utils'
 import { useWindowSize } from '../../../../../hooks/useWindowSize'
@@ -21,7 +22,8 @@ import { ProductOption } from '../ProductOption'
 import { ProductOptionSubOption } from '../ProductOptionSubOption'
 import { LoginForm } from '../LoginForm'
 import { SignUpForm } from '../SignUpForm'
-import { ProductShare } from '../ProductShare'
+import { ProductOptionsBar } from '../ProductOptionsBar'
+// import { ProductShare } from '../ProductShare'
 import {
   ProductContainer,
   WrapperImage,
@@ -36,12 +38,16 @@ import {
   SkuContent,
   ProductFormTitle,
   WrapperIngredients,
-  ShareWrapper
+  ProductTopBar,
+  ProductInfoWrapper,
+  FloatingProductBar,
+  ProductPrice
+  // ShareWrapper
 } from './styles'
 import { useTheme } from 'styled-components'
 const ProductOptionsUI = (props) => {
   const {
-    businessSlug,
+    // businessSlug,
     editMode,
     isSoldOut,
     productObject,
@@ -62,8 +68,9 @@ const ProductOptionsUI = (props) => {
   const [{ auth, user }, { login }] = useSession()
   const [, t] = useLanguage()
   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [selected, setSelected] = useState('')
   const [orderState] = useOrder()
-  // const [{ parsePrice }] = useUtils()
+  const [{ parsePrice }] = useUtils()
   const theme = useTheme()
   const [modalPageToShow, setModalPageToShow] = useState('login')
   const userCustomer = JSON.parse(window.localStorage.getItem('user-customer'))
@@ -143,109 +150,126 @@ const ProductOptionsUI = (props) => {
         }
         {!loading && !error && product && (
           <>
-            <WrapperImage>
-              <ProductImage id='product_image'>
-                {product && !loading && !error && (
-                  <ShareWrapper>
-                    <ProductShare
-                      slug={businessSlug}
-                      categoryId={product?.category_id}
-                      productId={product?.id}
-                    />
-                  </ShareWrapper>
-                )}
-                <img
-                  src={product?.images || theme.images?.dummies?.product}
-                  alt='product'
-                  width='300px'
-                  height='300px'
-                  loading='lazy'
-                  onError={(e) => { e.target.onerror = null; e.target.src = theme.images?.dummies?.product }}
-                />
-              </ProductImage>
-              <ProductFormTitle>
-                <h2>{product?.name}</h2>
-                {product?.description && <p>{product?.description}</p>}
-                {product?.sku && product?.sku !== '-1' && product?.sku !== '1' && (
-                  <SkuContent>
-                    <h2>{t('SKU', theme?.defaultLanguages?.SKU || 'Sku')}</h2>
-                    <p>{product?.sku}</p>
-                  </SkuContent>
-                )}
-              </ProductFormTitle>
-            </WrapperImage>
-            <ProductInfo>
-              <ProductEdition>
-                {product?.ingredients.length > 0 && (<SectionTitle>{t('INGREDIENTS', theme?.defaultLanguages?.INGREDIENTS || 'Ingredients')}</SectionTitle>)}
-                <WrapperIngredients isProductSoldout={isSoldOut || maxProductQuantity <= 0}>
-                  {product?.ingredients.map(ingredient => (
-                    <ProductIngredient
-                      key={ingredient?.id}
-                      ingredient={ingredient}
-                      state={productCart.ingredients[`id:${ingredient?.id}`]}
-                      onChange={handleChangeIngredientState}
-                    />
-                  ))}
-                </WrapperIngredients>
-                {
-                  product?.extras.map(extra => extra.options.map(option => {
-                    const currentState = productCart.options[`id:${option?.id}`] || {}
-                    return (
-                      <div key={option?.id}>
-                        {
-                          showOption(option) && (
-                            <ProductOption
-                              option={option}
-                              currentState={currentState}
-                              error={errors[`id:${option?.id}`]}
-                            >
-                              <WrapperSubOption className={isError(option?.id)}>
-                                {
-                                  option.suboptions.filter(suboptions => suboptions.enabled).map(suboption => {
-                                    const currentState = productCart.options[`id:${option?.id}`]?.suboptions[`id:${suboption?.id}`] || {}
-                                    const balance = productCart.options[`id:${option?.id}`]?.balance || 0
-                                    return (
-                                      <ProductOptionSubOption
-                                        key={suboption?.id}
-                                        onChange={handleChangeSuboptionState}
-                                        balance={balance}
-                                        option={option}
-                                        suboption={suboption}
-                                        state={currentState}
-                                      />
-                                    )
-                                  })
-                                }
-                              </WrapperSubOption>
-                            </ProductOption>
-                          )
-                        }
-                      </div>
-                    )
-                  }))
-                }
-                <ProductComment>
-                  <SectionTitle>{t('SPECIAL_COMMENT', theme?.defaultLanguages?.SPECIAL_COMMENT || 'Special comment')}</SectionTitle>
-                  <TextArea
-                    rows={4}
-                    placeholder={t('SPECIAL_COMMENT', theme?.defaultLanguages?.SPECIAL_COMMENT || 'Special comment')}
-                    defaultValue={productCart.comment}
-                    onChange={handleChangeCommentState}
-                    disabled={!(productCart && !isSoldOut && maxProductQuantity)}
+            <ProductTopBar>
+              <h2>{product?.name}</h2>
+            </ProductTopBar>
+            <ProductOptionsBar
+              extras={product?.extras}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <ProductInfoWrapper>
+              <WrapperImage>
+                <ProductImage id='product_image'>
+                  {/* {product && !loading && !error && (
+                    <ShareWrapper>
+                      <ProductShare
+                        slug={businessSlug}
+                        categoryId={product?.category_id}
+                        productId={product?.id}
+                      />
+                    </ShareWrapper>
+                  )} */}
+                  <img
+                    src={product?.images || theme.images?.dummies?.product}
+                    alt='product'
+                    width='300px'
+                    height='300px'
+                    loading='lazy'
+                    onError={(e) => { e.target.onerror = null; e.target.src = theme.images?.dummies?.product }}
                   />
-                </ProductComment>
-                {
-                props.afterMidElements?.map((MidElement, i) => (
-                  <React.Fragment key={i}>
-                    {MidElement}
-                  </React.Fragment>))
-                }
-                {
-                props.afterMidComponents?.map((MidComponent, i) => (
-                  <MidComponent key={i} {...props} />))
-                }
-              </ProductEdition>
+                </ProductImage>
+                <ProductFormTitle>
+                  <span>{parsePrice(product?.price)}</span>
+                  {product?.description && <p>{product?.description}</p>}
+                  {product?.sku && product?.sku !== '-1' && product?.sku !== '1' && (
+                    <SkuContent>
+                      <h2>{t('SKU', theme?.defaultLanguages?.SKU || 'Sku')}</h2>
+                      <p>{product?.sku}</p>
+                    </SkuContent>
+                  )}
+                </ProductFormTitle>
+              </WrapperImage>
+              <ProductInfo>
+                <ProductEdition>
+                  {product?.ingredients.length > 0 && (<SectionTitle>{t('INGREDIENTS', theme?.defaultLanguages?.INGREDIENTS || 'Ingredients')}</SectionTitle>)}
+                  <WrapperIngredients isProductSoldout={isSoldOut || maxProductQuantity <= 0}>
+                    {product?.ingredients.map(ingredient => (
+                      <ProductIngredient
+                        key={ingredient?.id}
+                        ingredient={ingredient}
+                        state={productCart.ingredients[`id:${ingredient?.id}`]}
+                        onChange={handleChangeIngredientState}
+                      />
+                    ))}
+                  </WrapperIngredients>
+                  {
+                    product?.extras.map(extra => extra.options.map(option => {
+                      const currentState = productCart.options[`id:${option?.id}`] || {}
+                      return (
+                        <div key={option?.id}>
+                          {
+                            (showOption(option) && option.id === selected.id) && (
+                              <ProductOption
+                                option={option}
+                                currentState={currentState}
+                                error={errors[`id:${option?.id}`]}
+                              >
+                                <WrapperSubOption className={isError(option?.id)}>
+                                  {
+                                    option.suboptions.filter(suboptions => suboptions.enabled).map(suboption => {
+                                      const currentState = productCart.options[`id:${option?.id}`]?.suboptions[`id:${suboption?.id}`] || {}
+                                      const balance = productCart.options[`id:${option?.id}`]?.balance || 0
+                                      return (
+                                        <ProductOptionSubOption
+                                          key={suboption?.id}
+                                          onChange={handleChangeSuboptionState}
+                                          balance={balance}
+                                          option={option}
+                                          suboption={suboption}
+                                          state={currentState}
+                                        />
+                                      )
+                                    })
+                                  }
+                                </WrapperSubOption>
+                              </ProductOption>
+                            )
+                          }
+                        </div>
+                      )
+                    }))
+                  }
+                  {
+                    (selected.id === -1 && (
+                      <ProductComment>
+                        <SectionTitle>{t('SPECIAL_COMMENT', theme?.defaultLanguages?.SPECIAL_COMMENT || 'Special comment')}</SectionTitle>
+                        <TextArea
+                          rows={4}
+                          placeholder={t('SPECIAL_COMMENT', theme?.defaultLanguages?.SPECIAL_COMMENT || 'Special comment')}
+                          defaultValue={productCart.comment}
+                          onChange={handleChangeCommentState}
+                          disabled={!(productCart && !isSoldOut && maxProductQuantity)}
+                        />
+                      </ProductComment>
+                    ))
+                  }
+                  {
+                  props.afterMidElements?.map((MidElement, i) => (
+                    <React.Fragment key={i}>
+                      {MidElement}
+                    </React.Fragment>))
+                  }
+                  {
+                  props.afterMidComponents?.map((MidComponent, i) => (
+                    <MidComponent key={i} {...props} />))
+                  }
+                </ProductEdition>
+              </ProductInfo>
+            </ProductInfoWrapper>
+            <FloatingProductBar>
               <ProductActions className={isIndividualBusinessCart && 'isIndividualBusinessCart-ProductAction'}>
+                <ProductPrice>{parsePrice(productCart?.total)}</ProductPrice>
                 {
                   productCart && !isSoldOut && maxProductQuantity > 0 && (
                     <div className='incdec-control'>
@@ -306,7 +330,7 @@ const ProductOptionsUI = (props) => {
                   </Button>
                 )}
               </ProductActions>
-            </ProductInfo>
+            </FloatingProductBar>
           </>
         )}
         {modalIsOpen && !auth && (

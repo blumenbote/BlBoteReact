@@ -2,49 +2,59 @@ import { lighten } from 'polished'
 import styled, { css } from 'styled-components'
 export const ProductContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   position: relative;
-  padding: 50px 10px 10px;
+  padding: 0px 10px 10px;
   width: 100%;
   box-sizing: border-box;
   @media (min-width: 768px) {
     height: 100%;
-    padding: 50px 30px 10px;
+    padding: 0px 30px 10px;
   }
   @media (min-width: 1024px) {
     flex-wrap: nowrap;
     overflow: auto;
     padding: 0;
-    height: 84vh;
+    height: 83vh;
     overflow-y: scroll;
   }
 `
+
+export const ProductTopBar = styled.div`
+  width: 100vw; 
+  padding: 0px 16px 0px 52px;
+  box-sizing: border-box;
+  @media (min-width: 1024px) {
+    padding: 0px 16px 0px 120px;
+  }
+  &h1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+`
+export const ProductInfoWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 100%;
+  margin: 20px 48px;
+  @media (min-width: 1024px) {
+    grid-template-columns: 40% auto;
+  }
+`
+
 export const WrapperImage = styled.div`
   width: 100%;
-  position: relative;
-  margin-top: 10px;
   @media (min-width: 1024px) {
-    display: flex;
-    width: 40%;
-    position: sticky;
-    top: 0;
-    flex-direction: column;
-    align-items: center;
-    border-right: 1px solid ${props => props.theme.colors.borderColor};
-    overflow-y: auto;
-    ${props => props.theme?.rtl && css`
-      border-left: 1px solid ${props => props.theme.colors.borderColor};
-    `}
-    margin-top: 0px;
-    padding: 25px 4vw;
-    box-sizing: border-box;
+    border-width: 0px 1px 0px 0px;
+    border-color: #DEE2E6;
+    border-style: solid;
   }
 `
 export const ProductImage = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  height: 300px;
+  height: 310px;
   width: 100%;
   img {
     width: 100%;
@@ -52,14 +62,13 @@ export const ProductImage = styled.div`
   }
   @media (min-width: 1024px) {
     justify-content: flex-start;
-    padding-top: 4vh;
     img {
-      width: 260px;
-      height: 260px;
-      border-radius: 50%;
+      width: 76%;
+      height: 310px;
+      border-radius: 10px;
       box-sizing: border-box;
-      padding: 4px;
-      border: 1px solid ${props => props.theme.colors.primary};
+      padding: 0px 20px;
+      background-color: #F8F9FA;
     }
   }
 `
@@ -101,8 +110,7 @@ export const ProductInfo = styled.div`
     padding: 10px 0px;
   }
   @media (min-width: 1024px) {
-    width: 60%;
-    padding: 25px 6vw;
+    padding: 0px 20px;
     top: 0;
     margin-top: 0px;   
     background-color: ${props => props.theme.colors.secundaryBackground};
@@ -114,8 +122,12 @@ export const ProductInfo = styled.div`
 export const ProductFormTitle = styled.div`
   overflow-wrap: break-word;
   padding: 0 7px;
+  margin-top: 12px;
   @media (min-width: 1024px) {
     width: calc(100% - 25px);
+  }
+  & span {
+    font-size: 18px
   }
 `
 export const ProductEdition = styled.div``
@@ -155,14 +167,13 @@ export const ProductActions = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  position: fixed;
+  position: relative;
   bottom: 76px;
   right: 0;
   width: 100%;
   background-color: #FFF;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   box-sizing: border-box;
-  margin-top: 20px;
   &.isIndividualBusinessCart-ProductAction {
     bottom: 0;
     @media (min-width: 1024px) {
@@ -171,7 +182,7 @@ export const ProductActions = styled.div`
     
   }
   div.incdec-control {
-    width: 30%;
+    width: 11%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -179,6 +190,10 @@ export const ProductActions = styled.div`
       width: 25px;
       height: 25px;
       cursor: pointer;
+    }
+    span {
+      font-size: 18px;
+      font-weight: 600;
     }
   }
   div:last-child {
@@ -189,13 +204,13 @@ export const ProductActions = styled.div`
   button:disabled,
   button.disabled,
   svg.disabled {
-    opacity: 0.7;
+    opacity: 0.4;
   }
   svg.disabled {
     pointer-events: none;
   }
   button.add {
-    width: 48%;
+    width: 28%;
     padding: 5px 10px;
     margin: 0px 0px;
     position: relative;
@@ -214,9 +229,8 @@ export const ProductActions = styled.div`
     box-shadow: none;
   }
   @media (min-width: 1024px) {
-    position: sticky;
-    top: 100%;
-    justify-content: flex-end;
+    position: relative;
+    justify-content: space-between;
     div.incdec-control {
       svg {
         width: 30px;
@@ -310,4 +324,20 @@ export const ShareWrapper = styled.div`
     `}
   }
 
+`
+
+export const FloatingProductBar = styled.div`
+  position: fixed;
+  display: flex;
+  width: 100vw;
+  bottom: 0px;
+  background-color: #E8F0ED;
+  heigth: 80px;
+`
+
+export const ProductPrice = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  padding-left: 36px;
+  width: 100px;
 `

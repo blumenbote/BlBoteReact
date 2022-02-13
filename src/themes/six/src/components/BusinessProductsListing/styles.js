@@ -157,8 +157,8 @@ export const BackMenu = styled.div`
   position: absolute;
   width: 30px;
   height: 30px;
-  top: 15px;
-  right: 10px;
+  top: 22px;
+  left: 15px;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -166,11 +166,11 @@ export const BackMenu = styled.div`
   border-radius: 100px;
   cursor: pointer;  
   svg {    
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   @media (min-width: 768px) {
-    right: 25px;
+    left: 25px;
     ${props => props.theme?.rtl && css`
       left: 25px;
       right: unset;
@@ -179,29 +179,10 @@ export const BackMenu = styled.div`
   }
 
   @media (min-width: 1024px) {
-    right: unset;
-    left: calc(40% - 45px);
+    left: 45px;
     ${props => props.theme?.rtl && css`
       left: unset;
       right: calc(40% - 45px);
-    `}
-  }
-
-  @media (min-width: 1200px) {
-    right: unset;
-    left: calc(40% - 50px);
-    ${props => props.theme?.rtl && css`
-      left: unset;
-      right: calc(40% - 50px);
-    `}
-  }
-
-  @media (min-width: 1440px) {
-    right: unset;
-    left: calc(40% - 60px);
-    ${props => props.theme?.rtl && css`
-      left: unset;
-      right: calc(40% - 60px);
     `}
   }
 `
