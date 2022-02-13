@@ -31,7 +31,7 @@ export const Title = styled.h3`
   font-size: 18px;
   display: flex;
   flex-direction: column;
-  color: ${props => props.theme.colors.fontSecundary};
+  color: ${props => props.theme.colors.fontPrimary};
   text-transform: uppercase;
   margin: 10px 0;
 

@@ -157,6 +157,7 @@ const ProductOptionsUI = (props) => {
               extras={product?.extras}
               selected={selected}
               setSelected={setSelected}
+              errors={errors}
             />
             <ProductInfoWrapper>
               <WrapperImage>

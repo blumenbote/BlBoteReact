@@ -11,11 +11,12 @@ export const ProductOptionsBar = (props) => {
   const {
     extras,
     selected,
-    setSelected
+    setSelected,
+    errors
   } = props
 
-  // const [, t] = useLanguage()
   const [options, setOptions] = useState([])
+  const [errorsIds, setErrorsIds] = useState([])
 
   useEffect(() => {
     const _optionsList = extras?.reduce((allOptions, extra) => {
@@ -42,6 +43,20 @@ export const ProductOptionsBar = (props) => {
     setSelected(_options[0])
   }, [])
 
+  useEffect(() => {
+    const _errorsIds = Object.keys(errors).reduce((reduced, error) => {
+      reduced.push(parseInt(error?.replace('id:', '')))
+      return reduced
+    }, [])
+    setErrorsIds(_errorsIds)
+  }, [errors])
+
+  useEffect(() => {
+    if (options?.length > 0 && selected !== '') {
+      setSelected(options[0])
+    }
+  }, [options])
+
   const handleOptionClick = (id) => {
     const _selectedOption = options.find(option => option.id === id)
     setSelected(_selectedOption)
@@ -52,7 +67,7 @@ export const ProductOptionsBar = (props) => {
         return (
           <OptionSelector
             key={option.id}
-            className={option.id === selected.id ? 'selected' : ''}
+            className={`${option.id === selected.id ? 'selected' : ''} ${errorsIds.includes(option.id) ? 'required' : ''}`}
             onClick={() => handleOptionClick(option.id)}
           >
             {option.name}

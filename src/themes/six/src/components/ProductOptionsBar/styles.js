@@ -17,6 +17,7 @@ export const OptionsBarContainer = styled.div`
   }
 `
 export const OptionSelector = styled.div`
+  position: relative;
   height: 68px;
   margin: 0 16px;
   display: flex;
@@ -25,8 +26,23 @@ export const OptionSelector = styled.div`
   color: #6C757D;
   white-space: nowrap;
   &.selected {
-    border-bottom: 4px solid #016341;
+    border-bottom: 4px solid ${props => props.theme.colors.primary};
     color: #000;
+  }
+  ::after {
+    content: " ";
+    position: absolute;
+    right: -19px;
+    top: 9px;
+    background-color: ${props => props.theme.colors.primary};
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s
+  }
+  &.required::after {
+    opacity: 1;
   }
   cursor: pointer;
 `

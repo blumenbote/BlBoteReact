@@ -38,7 +38,7 @@ export const ProductInfoWrapper = styled.div`
   grid-template-columns: 100%;
   margin: 20px 48px;
   @media (min-width: 1024px) {
-    grid-template-columns: 40% auto;
+    grid-template-columns: 500px auto;
   }
 `
 
@@ -54,21 +54,21 @@ export const ProductImage = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  height: 310px;
-  width: 100%;
+  height: 350px;
+  width: 392px;
+  border-radius: 8px;
+  background-color: ${props => props.theme.colors.secundaryBackground};
   img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
   @media (min-width: 1024px) {
-    justify-content: flex-start;
+    justify-content: center;
     img {
-      width: 76%;
+      width: 310px;
       height: 310px;
       border-radius: 10px;
       box-sizing: border-box;
-      padding: 0px 20px;
-      background-color: #F8F9FA;
     }
   }
 `
@@ -113,7 +113,6 @@ export const ProductInfo = styled.div`
     padding: 0px 20px;
     top: 0;
     margin-top: 0px;   
-    background-color: ${props => props.theme.colors.secundaryBackground};
     height: fit-content;
     min-height: 100%;
     box-sizing: border-box;

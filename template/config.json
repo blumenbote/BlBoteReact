@@ -1,13 +1,13 @@
 {
   "app_id": "ordering-react",
-  "project": "luisv4",
+  "project": "alsea-staging",
   "api": {
-    "url": "https://apiv4.ordering.co",
-    "language": "en",
+    "url": "https://alsea-api-staging.ordering.co",
+    "language": "es",
     "version": "v400"
   },
   "socket": {
-    "url": "https://socket.ordering.co"
+    "url": "https://alsea-api-staging.ordering.co:1338"
   },
   "store_android_id": "",
   "store_apple_id": "",
