@@ -8,7 +8,6 @@ export const ProductsContainer = styled.div`
    h3 {
     padding: 7px;
     margin-top: 0;
-    border-bottom: 1px solid ${props => props.theme.colors.borderColor};
    }
 `
 

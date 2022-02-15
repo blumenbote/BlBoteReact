@@ -95,3 +95,6 @@ export const BusinessFilter = styled.div`
     padding-right: 20px;
   `}
 `
+export const StartButton = styled.button`
+  
+`

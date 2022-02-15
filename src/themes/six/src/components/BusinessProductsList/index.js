@@ -1,6 +1,6 @@
 import React from 'react'
 import { ProductsList, useLanguage } from 'ordering-components'
-import Skeleton from 'react-loading-skeleton'
+// import Skeleton from 'react-loading-skeleton'
 
 import { SingleProductCard } from '../SingleProductCard'
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
@@ -43,10 +43,10 @@ const BusinessProductsListUI = (props) => {
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
       <ProductsContainer>
-        {windowSize.width > 850 &&
+        {/* {windowSize.width > 850 &&
           <>
             {isBusinessLoading ? <Skeleton width={100} height={30} /> : <h2>{t('MENU', 'Menu')} </h2>}
-          </>}
+          </>} */}
         {category?.id && (
           <>
             {windowSize.width > 850 &&

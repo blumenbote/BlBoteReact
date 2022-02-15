@@ -1,46 +1,24 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const CategoriesContainer = styled.div`
   display: flex;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
   text-align: center;
-  position: sticky;
-  
-  ${({ vertical }) => vertical
-    ? css`
-        top: 75px;
-        z-index: 4;
-        box-shadow: none;
-        padding: 0px;
-      `
-    : css`
-        top: -1px;
-        z-index: 5;
-        border-bottom: 1px solid #DEE2E6;
-        background-color: #FFF;
-        @media (min-width: 381px) {
-          padding: 0 20px;
-        }
-        @media (min-width: 1024px) {
-          background-color: #F7F7F7;
-        }
-    `
-  }
-
   div.category {
     text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+  }  
+`
+
+export const CategoryCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 176px;
+  margin: 20px;
+  img {
+    width: 100%;
+    height: 176px;
+    border-radius: 50%;
+    background-color: ${props => props.theme.colors.primaryDarkBackground}
   }
-
-  div.special{
-    ${props => !props.featured && css`
-      display: none
-    `}
-  }
-
-  
-
-  
-  
 `

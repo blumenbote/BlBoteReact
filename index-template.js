@@ -20,6 +20,9 @@ import isotype from './template/assets/images/isotype.svg'
 import isotypeInvert from './template/assets/images/isotype-invert.svg'
 
 import homeHero from './template/assets/images/home-hero.png'
+import starbucksHomeBackground from './template/assets/starbucksHomeBackground.svg'
+import starbucksHomeImage from './template/assets/starbucksHomeImage.png'
+import starbucksHomeLogo from './template/assets/starbucksHomeLogo.svg'
 import notFound from './template/assets/images/not-found.svg'
 import notNetwork from './template/assets/images/not-network.svg'
 import notFound404 from './template/assets/images/not-found-404.svg'
@@ -95,6 +98,9 @@ theme.images = {
   logos,
   general: {
     homeHero,
+    starbucksHomeBackground,
+    starbucksHomeImage,
+    starbucksHomeLogo,
     notFound,
     notFound404,
     notFoundLighting,

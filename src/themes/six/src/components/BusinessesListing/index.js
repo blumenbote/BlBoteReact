@@ -9,7 +9,8 @@ import {
   BusinessesTitle,
   ListWrapper,
   BusinessContent,
-  MapWrapper
+  MapWrapper,
+  StartButton
 } from './styles'
 
 import { Button } from '../../../../../../src/styles/Buttons'
@@ -59,6 +60,7 @@ const BusinessesListingUI = (props) => {
   const [mapErrors, setMapErrors] = useState('')
   const [showBusinessInfo, setShowBusinessInfo] = useState(false)
   const [businessInfoById, setBusinessInfoById] = useState({})
+  const [closestBusiness, setClosestBusiness] = useState({ isLoaded: false, businessInfo: {} })
   const windowSize = useWindowSize()
   const [{ optimizeImage }] = useUtils()
 
@@ -78,12 +80,20 @@ const BusinessesListingUI = (props) => {
   }, [businessesList, paginationProps])
 
   useEffect(() => {
-    if (!showBusinessInfo) {
-      const listWindows = document.querySelector('#list_wrapper')
-      listWindows.addEventListener('scroll', handleScroll)
-      return () => listWindows.removeEventListener('scroll', handleScroll)
+    if (!businessesList.loading) {
+      const _closestBusiness = businessesList?.businesses?.find(business => business.name.toLowerCase().includes('starbucks'))
+      if (_closestBusiness && Object.keys(_closestBusiness).length > 0) {
+        setClosestBusiness({ isLoaded: true, businessInfo: { ..._closestBusiness } })
+      }
     }
-  }, [handleScroll, showBusinessInfo])
+  }, [businessesList])
+  // useEffect(() => {
+  //   if (!showBusinessInfo) {
+  //     const listWindows = document.querySelector('#list_wrapper')
+  //     listWindows.addEventListener('scroll', handleScroll)
+  //     return () => listWindows.removeEventListener('scroll', handleScroll)
+  //   }
+  // }, [handleScroll, showBusinessInfo])
 
   const handleClickAddress = (e) => {
     if (auth) {
@@ -152,187 +162,19 @@ const BusinessesListingUI = (props) => {
         </React.Fragment>))}
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
-
-      <BusinessContainer>
-        {!showBusinessInfo
-          ? (
-            <BusinessContent>
-              <ListWrapper id='list_wrapper' className='list-wrapper'>
-                <>
-                  {windowSize.width > 850 && (
-                    <WrapperSearch isCustomLayout={isCustomLayout}>
-                      <SearchBar
-                        lazyLoad
-                        search={searchValue}
-                        isCustomLayout
-                        placeholder={t('SEARCH_BUSINESSES', 'Search Businesses')}
-                        onSearch={handleChangeSearch}
-                      />
-                      {isCustomLayout && (
-                        <FiMap onClick={toggleMap} />
-                      )}
-                    </WrapperSearch>
-                  )}
-                  <BusinessList>
-                    {
-                      !businessesList.loading && businessesList.businesses.length === 0 && (
-                        <NotFoundSource
-                          content={t('NOT_FOUND_BUSINESSES', 'No businesses to delivery / pick up at this address, please change filters or change address.')}
-                        >
-                          <Button
-                            outline
-                            color='primary'
-                            onClick={() => handleClickAddress()}
-                          >
-                            {t('CHANGE_ADDRESS', 'Select other Address')}
-                          </Button>
-                        </NotFoundSource>
-                      )
-                    }
-                    {businessesList.businesses?.map((business) => (
-                      <BusinessController
-                        key={business.id}
-                        className='card'
-                        business={business}
-                        handleCustomClick={handleBusinessClick}
-                        handleShowBusinessInfo={(business) => handleShowBusinessInfo(business)}
-                        orderType={orderState?.options?.type}
-                        isCustomLayout={isCustomLayout}
-                        isShowCallcenterInformation={isCustomLayout}
-                      />
-                    ))}
-                    {businessesList.loading && (
-                      [...Array(paginationProps.nextPageItems ? paginationProps.nextPageItems : 8).keys()].map(i => (
-                        <BusinessController
-                          key={i}
-                          className='card'
-                          business={{}}
-                          isSkeleton
-                          orderType={orderState?.options?.type}
-                        />
-                      ))
-                    )}
-                    {businessesList.error && businessesList.error.length > 0 && businessesList.businesses.length === 0 && (
-                      businessesList.error.map((e, i) => (
-                        <ErrorMessage key={i}>{t('ERROR', 'ERROR')}: [{e?.message || e}]</ErrorMessage>
-                      ))
-                    )}
-                  </BusinessList>
-                </>
-              </ListWrapper>
-              <MapWrapper className='map-wrapper'>
-                {windowSize.width < 850 && (
-                  <WrapperSearch isCustomLayout={isCustomLayout}>
-                    <SearchBar
-                      lazyLoad
-                      search={searchValue}
-                      isCustomLayout={isCustomLayout}
-                      placeholder={t('SEARCH_BUSINESSES', 'Search Businesses')}
-                      onSearch={handleChangeSearch}
-                    />
-                    {isCustomLayout && (
-                      <FiMap onClick={toggleMap} />
-                    )}
-                  </WrapperSearch>
-                )}
-                {(configs?.google_maps_api_key?.value && businessesList?.businesses?.length > 0) ? (
-                  <BusinessesMap
-                    businessList={businessesList.businesses}
-                    userLocation={orderState?.options?.address?.location}
-                    setErrors={setMapErrors}
-                  />
-                ) : (
-                  <Skeleton width={70} />
-                )}
-              </MapWrapper>
-            </BusinessContent>
-          ) : (
-            <>
-              {
-                businessInfoById &&
-                  <BusinessInformation
-                    business={businessInfoById}
-                    getBusinessType={getBusinessType}
-                    optimizeImage={optimizeImage}
-                    onClose={setShowBusinessInfo}
-                    goBusiness={handleBusinessClick}
-                  />
-              }
-            </>
-          )}
-
-        {isCustomLayout && onRedirectPage && (
-          <>
-            <OrdersOption
-              horizontal
-              isBusinessesPage
-              onRedirectPage={onRedirectPage}
-              titleContent={t('CARTS', 'Carts')}
-              businessesIds={businessesIds}
-              customArray={
-                getCustomArray(orderState.carts)?.filter(cart => cart.products.length > 0)
-              }
-              isCustomLayout
-              isBusinessesLoading={businessesList.loading}
-            />
-            <OrdersOption
-              horizontal
-              asDashboard
-              isBusinessesPage
-              businessesIds={businessesIds}
-              onRedirectPage={onRedirectPage}
-              userCustomerId={userCustomer?.id}
-              isCustomLayout
-              isBusinessesLoading={businessesList.loading}
-            />
-          </>
-        )}
-
-        {isCustomLayout && businessesList?.businesses?.length > 0 && (
-          <BusinessesTitle>
-            {t('BUSINESSES', 'Businesses')}
-          </BusinessesTitle>
-        )}
-
-        <Modal
-          title={t('ADDRESS_FORM', 'Address Form')}
-          open={modals.formOpen}
-          onClose={() => setModals({ ...modals, formOpen: false })}
-        >
-          <AddressForm
-            useValidationFileds
-            address={orderState?.options?.address || {}}
-            onClose={() => setModals({ ...modals, formOpen: false })}
-            onCancel={() => setModals({ ...modals, formOpen: false })}
-            onSaveAddress={() => setModals({ ...modals, formOpen: false })}
-          />
-        </Modal>
-
-        <Modal
-          title={t('ADDRESSES', 'Address List')}
-          open={modals.listOpen}
-          width='70%'
-          onClose={() => setModals({ ...modals, listOpen: false })}
-        >
-          <AddressList
-            isModal
-            changeOrderAddressWithDefault
-            userId={isNaN(userCustomer?.id) ? null : userCustomer?.id}
-            onCancel={() => setModals({ ...modals, listOpen: false })}
-            onAccept={() => handleFindBusinesses()}
-          />
-        </Modal>
-
-        <Alert
-          title={!mapErrors ? t('SEARCH', 'Search') : t('BUSINESSES_MAP', 'Businesses Map')}
-          content={alertState.content}
-          acceptText={t('ACCEPT', 'Accept')}
-          open={alertState.open}
-          onClose={() => handleCloseAlerts()}
-          onAccept={() => handleCloseAlerts()}
-          closeOnBackdrop={false}
+      {closestBusiness.isLoaded ? (
+        <BusinessController
+          key={closestBusiness.businessInfo.id}
+          className='card'
+          business={closestBusiness.businessInfo}
+          handleCustomClick={handleBusinessClick}
+          orderType={orderState?.options?.type}
+          isButton
+          buttonMessage={t('STARBUCKS_KIOSK_HOME_MESSAGE', 'Toca la pantalla para iniciar')}
         />
-      </BusinessContainer>
+      ) : (
+        <Skeleton width={500} />
+      )}
       {props.afterComponents?.map((AfterComponent, i) => (
         <AfterComponent key={i} {...props} />))}
       {props.afterElements?.map((AfterElement, i) => (

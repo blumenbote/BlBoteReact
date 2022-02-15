@@ -4,9 +4,9 @@ import styled, { css } from 'styled-components'
 
 export const CardContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   width: calc(100% - 40px);
-  padding: 10px;
   margin: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -22,7 +22,7 @@ export const CardContainer = styled.div`
   `}
   
   @media (min-width: 681px) {
-    width: calc(50% - 40px);
+    width: 180px;
   }
 `
 
@@ -45,7 +45,11 @@ export const SoldOut = styled.span`
 export const CardInfo = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: calc(100% - 90px);
+  max-width: 100%;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   > * {
     margin: 5px;
   }
@@ -54,7 +58,7 @@ export const CardInfo = styled.div`
     font-size: 16px;
     font-weight: ${({ soldOut }) => soldOut ? 'bold' : '500'};
     text-align: left;
-    color: #263238;
+    color: ${props => props.theme?.colors.fontPrimary};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -75,7 +79,7 @@ export const CardInfo = styled.div`
   }
 
   span {
-    color: ${({ soldOut, theme }) => soldOut ? lighten(0.05, theme.colors.primary) : theme.colors.primary};
+    color: ${({ soldOut, theme }) => soldOut ? lighten(0.05, theme.colors.fontPrimary) : theme.colors.fontPrimary};
     font-weight: bold;
   }
 
@@ -99,10 +103,10 @@ export const CardInfo = styled.div`
 `
 
 export const WrapLogo = styled.div`
-  max-width: 75px;
-  max-height: 75px;
-  height: 75px;
-  width: 75px;
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  background-color: ${props => props.theme.colors.secundaryBackground};
   margin-right: 5px;
   ${props => props.theme?.rtl && css`
     margin-left: 5px;
@@ -117,12 +121,11 @@ const CardLogoStyled = styled.div`
   background-size: cover;
   background-position: center;
   object-fit: cover;
-  min-height: 75px;
-  min-width: 75px;
-  width: 75px;
-  height: 75px;
-  border-radius: 100px;
-  border: 1px solid ${props => props.theme.colors.primary};
+  min-height: 150px;
+  min-width: 150px;
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
   
 `
 export const CardLogo = (props) => {

@@ -17,7 +17,8 @@ import {
   WrapProductsCategroy,
   WrapBusinessList,
   ProductDetail,
-  BackMenu
+  BackMenu,
+  CategoriesTopBar
 } from './styles'
 import { NotFoundSource } from '../../../../../components/NotFoundSource'
 import { PageNotFound } from '../../../../../components/PageNotFound'
@@ -107,6 +108,9 @@ const BusinessProductsListingUI = (props) => {
     closeModalProductForm()
     setCartFullPage(false)
   }
+  const handleGoToPage = (data) => {
+    events.emit('go_to_page', data)
+  }
   const handleScroll = useCallback(() => {
     const innerHeightScrolltop = window.innerHeight + document.documentElement?.scrollTop + PIXELS_TO_SCROLL
     const badScrollPosition = innerHeightScrolltop < document.documentElement?.offsetHeight
@@ -189,58 +193,51 @@ const BusinessProductsListingUI = (props) => {
                     />
                   </WrapperSearch>
                 )}
-                {!(business?.categories?.length === 0 && !categoryId) && (
-                  <BusinessProductsCategories
-                    categories={windowSize.width > 850
-                      ? [{ id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') }, { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') }]
-                      : [{ id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') }, { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') }, ...business?.categories.sort((a, b) => a.rank - b.rank)]}
-                    categorySelected={categorySelected}
-                    onClickCategory={handleChangeCategory}
-                    featured={featuredProducts}
-                    openBusinessInformation={openBusinessInformation}
-                  />
-                )}
+                {categorySelected.name === 'All' &&
+                  <CategoriesTopBar>
+                    <MdArrowBack className='arrow-back' onClick={() => handleGoToPage({ page: 'search' })} />
+                    <h2>{t('CATEGORIES', 'Categories')}</h2>
+                  </CategoriesTopBar>}
+                {categorySelected.name !== 'All' &&
+                  <CategoriesTopBar>
+                    <MdArrowBack className='arrow-back' onClick={() => handleChangeCategory({ id: null, name: 'All' })} />
+                    <h2>{t('MENU', 'Menu')}</h2>
+                  </CategoriesTopBar>}
                 <WrapContent className='wrap-content'>
-                  <WrapProductsCategroy>
-                    {!(business?.categories?.length === 0 && !categoryId) && windowSize.width > 850 && (
-                      <BusinessProductsCategories
-                        categories={[...business?.categories.sort((a, b) => a.rank - b.rank)]}
-                        categorySelected={categorySelected}
-                        onClickCategory={handleChangeCategory}
-                        featured={featuredProducts}
-                        openBusinessInformation={openBusinessInformation}
-                        sideCategory
-                      />
-                    )}
-                  </WrapProductsCategroy>
-                  <WrapBusinessList className='right-list-panel'>
-                    {windowSize.width > 850 &&
-                      <>
-                        <BusinessBasicInformation
-                          businessState={businessState}
-                          setOpenBusinessInformation={setOpenBusinessInformation}
+                  {categorySelected.name === 'All' &&
+                    <WrapProductsCategroy>
+                      {!(business?.categories?.length === 0 && !categoryId) && (
+                        <BusinessProductsCategories
+                          categories={[...business?.categories.sort((a, b) => a.rank - b.rank)]}
+                          categorySelected={categorySelected}
+                          onClickCategory={handleChangeCategory}
+                          featured={featuredProducts}
                           openBusinessInformation={openBusinessInformation}
+                          sideCategory
                         />
-                      </>}
-                    <BusinessProductsList
-                      categories={[
-                        { id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') },
-                        { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') },
-                        ...business?.categories.sort((a, b) => a.rank - b.rank)
-                      ]}
-                      category={categorySelected}
-                      categoryState={categoryState}
-                      businessId={business.id}
-                      errors={errors}
-                      onProductClick={onProductClick}
-                      handleSearchRedirect={handleSearchRedirect}
-                      featured={featuredProducts}
-                      searchValue={searchValue}
-                      isCartOnProductsList={isCartOnProductsList && currentCart?.products?.length > 0}
-                      handleClearSearch={handleChangeSearch}
-                      errorQuantityProducts={errorQuantityProducts}
-                    />
-                  </WrapBusinessList>
+                      )}
+                    </WrapProductsCategroy>}
+                  {categorySelected.name !== 'All' &&
+                    <WrapBusinessList>
+                      <BusinessProductsList
+                        categories={[
+                          { id: null, name: t('ALL', theme?.defaultLanguages?.ALL || 'All') },
+                          { id: 'featured', name: t('FEATURED', theme?.defaultLanguages?.FEATURED || 'Featured') },
+                          ...business?.categories.sort((a, b) => a.rank - b.rank)
+                        ]}
+                        category={categorySelected}
+                        categoryState={categoryState}
+                        businessId={business.id}
+                        errors={errors}
+                        onProductClick={onProductClick}
+                        handleSearchRedirect={handleSearchRedirect}
+                        featured={featuredProducts}
+                        searchValue={searchValue}
+                        isCartOnProductsList={isCartOnProductsList && currentCart?.products?.length > 0}
+                        handleClearSearch={handleChangeSearch}
+                        errorQuantityProducts={errorQuantityProducts}
+                      />
+                    </WrapBusinessList>}
                 </WrapContent>
               </div>
               {isCartOnProductsList && currentCart?.products?.length > 0 && (

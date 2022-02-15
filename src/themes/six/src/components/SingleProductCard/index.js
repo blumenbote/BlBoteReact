@@ -63,10 +63,10 @@ export const SingleProductCard = (props) => {
             />
           </WrapLogo>
         ) : (
-          <Skeleton height={75} width={75} />
+          <Skeleton height={150} width={150} />
         )}
         <CardInfo soldOut={isSoldOut || maxProductQuantity <= 0}>
-          {!isSkeleton ? (<h1>{product?.name}</h1>) : (<Skeleton width={100} />)}
+          {!isSkeleton ? (<span>{product?.name}</span>) : (<Skeleton width={150} />)}
           {!isSkeleton ? (
             <span>{parsePrice(product?.price)}</span>
           ) : (

@@ -186,3 +186,18 @@ export const BackMenu = styled.div`
     `}
   }
 `
+export const CategoriesTopBar = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 15px 35px;
+  h2 {
+    margin-left: 4%;
+  }
+  svg {
+    font-size: 24px;
+  }
+  .arrow-back {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+`

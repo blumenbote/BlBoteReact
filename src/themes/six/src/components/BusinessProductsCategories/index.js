@@ -2,8 +2,9 @@ import React from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { BusinessProductsCategories as ProductsCategories } from 'ordering-components'
 import { AutoScroll } from '../../../../../components/AutoScroll'
-import { CategoriesContainer } from './styles'
+import { CategoriesContainer, CategoryCard } from './styles'
 import { Tabs, Tab } from '../../styles/Tabs'
+import dummyProduct from '../../../../../../template/assets/images/dummies/product.png'
 const BusinessProductsCategoriesUI = (props) => {
   const {
     isSkeleton,
@@ -17,7 +18,7 @@ const BusinessProductsCategoriesUI = (props) => {
   const ProductCategories = () => {
     return (
       categories && categories.length && categories.map(category => (
-        <Tab
+        <CategoryCard
           key={category.name}
           className={`category ${category.id === 'featured' ? 'special' : ''}`}
           active={categorySelected?.id === category.id}
@@ -25,8 +26,16 @@ const BusinessProductsCategoriesUI = (props) => {
           borderBottom={!sideCategory}
           vertical={sideCategory}
         >
+          <img src={
+            category?.image
+              ? category.image
+              : category?.products.find(product => typeof product.images === 'string' && product.images.length > 0)
+                ? category?.products[0]?.images
+                : dummyProduct
+          }
+          />
           {category.name}
-        </Tab>
+        </CategoryCard>
       ))
     )
   }
@@ -38,9 +47,9 @@ const BusinessProductsCategoriesUI = (props) => {
         </React.Fragment>))}
       {props.beforeComponents?.map((BeforeComponent, i) => (
         <BeforeComponent key={i} {...props} />))}
-      <CategoriesContainer featured={featured} vertical={sideCategory}>
+      <CategoriesContainer>
         {!isSkeleton ? (
-          <Tabs variant='primary' vertical={sideCategory}>
+          <>
             {openBusinessInformation ? (
               <>
                 <ProductCategories />
@@ -56,9 +65,9 @@ const BusinessProductsCategoriesUI = (props) => {
                     </AutoScroll>)}
               </>
             )}
-          </Tabs>
+          </>
         ) : (
-          <Tabs variant='primary' vertical={sideCategory}>
+          <Tabs variant='primary'>
             {[...Array(4).keys()].map(i => (
               <Tab key={i}>
                 <Skeleton width={100} />

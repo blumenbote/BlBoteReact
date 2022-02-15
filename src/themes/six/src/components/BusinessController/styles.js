@@ -1,5 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import backgroundImage from '../../../../../../template/assets/starbucksHomeImage.png'
+import backgroundElements from '../../../../../../template/assets/starbucksHomeBackground.svg'
 
 export const ContainerCard = styled.div` 
   margin: 12px 24px;
@@ -325,5 +327,25 @@ export const BusinessInfomation = styled.div`
 
   &:hover svg{
     font-size: 21px;
+  }
+`
+export const Screen = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: calc(100vh - 75px);
+  background-color: #E8F0ED;
+  img {
+    margin: 60px;
+  }
+  .message {
+    color: ${props => props.theme.colors.primaryContrast};
+    background-color: ${props => props.theme.colors.primary};
+    padding: 22px 68px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 38px;
   }
 `
