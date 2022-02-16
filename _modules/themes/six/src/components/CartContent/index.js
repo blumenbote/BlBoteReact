@@ -17,8 +17,6 @@ var _styles = require("./styles");
 
 var _Cart = require("../Cart");
 
-var _Buttons = require("../../../../../styles/Buttons");
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -69,11 +67,6 @@ var CartContent = function CartContent(props) {
     setCurrentCartUuid(null);
   };
 
-  var handleGoToPage = function handleGoToPage(data) {
-    // props.onClose()
-    events.emit('go_to_page', data);
-  };
-
   (0, _react.useEffect)(function () {
     events.on('cart_popover_closed', handleSetCurrentCartUuid);
     events.on('cart_product_added', handleAddProduct);
@@ -109,14 +102,7 @@ var CartContent = function CartContent(props) {
     alt: "Empty cart",
     width: "150px",
     loading: "lazy"
-  }), /*#__PURE__*/_react.default.createElement("h1", null, t('CARTS_NOT_FOUND', 'Start your next order')), /*#__PURE__*/_react.default.createElement("p", null, t('CART_METHOD_DESCRIOPTION', 'As you add menu items,they´ll appear here.You´ll have a chence to review before placing your order.')), /*#__PURE__*/_react.default.createElement(_Buttons.Button, {
-    color: "primary",
-    onClick: function onClick() {
-      return handleGoToPage({
-        page: 'search'
-      });
-    }
-  }, t('ADD_ITEM', 'Add items ')))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
+  }), /*#__PURE__*/_react.default.createElement("h1", null, t('CARTS_NOT_FOUND', 'Start your next order')), /*#__PURE__*/_react.default.createElement("p", null, t('CART_METHOD_DESCRIOPTION', 'As you add menu items,they´ll appear here.You´ll have a chence to review before placing your order.')))), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i
     }, props));

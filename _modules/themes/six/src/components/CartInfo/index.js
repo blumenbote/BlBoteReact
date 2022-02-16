@@ -40,7 +40,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var CartInfo = function CartInfo(props) {
-  var _theme$images, _theme$images$logos, _cart$products, _configs$dates_moment;
+  var _theme$images, _theme$images$logos;
 
   var handleGoBackPage = props.handleGoBackPage,
       cart = props.cart,
@@ -137,17 +137,7 @@ var CartInfo = function CartInfo(props) {
     loading: "lazy"
   })), /*#__PURE__*/_react.default.createElement(_styles.HeaderText, {
     onClick: handleGoBackPage
-  }, /*#__PURE__*/_react.default.createElement(_AiOutlineLeft.default, null), windowSize.width > 768 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, t('BACK_STORE', 'Back to Store')))), /*#__PURE__*/_react.default.createElement(_styles.InfoWrapper, null, /*#__PURE__*/_react.default.createElement(_styles.OrderReview, null, t('REVIEW_ORDER', 'Review Order'), " \xA0 (", ' ', cart === null || cart === void 0 ? void 0 : (_cart$products = cart.products) === null || _cart$products === void 0 ? void 0 : _cart$products.length, ' ', ")"), /*#__PURE__*/_react.default.createElement(_styles.PreTime, null, t('PREP_TIME', 'Prep time'), ' ', ':', ' ', options !== null && options !== void 0 && options.moment ? parseDate(options === null || options === void 0 ? void 0 : options.moment, {
-    outputFormat: configs === null || configs === void 0 ? void 0 : (_configs$dates_moment = configs.dates_moment_format) === null || _configs$dates_moment === void 0 ? void 0 : _configs$dates_moment.value
-  }) : t('ASAP_ABBREVIATION', 'ASAP')), /*#__PURE__*/_react.default.createElement(_styles.SubTitle, null, t('STORE', 'Store'), ':'), /*#__PURE__*/_react.default.createElement(_styles.PickStore, {
-    onClick: function onClick() {
-      return handleGoToPage({
-        page: 'search'
-      });
-    }
-  }, !businessName ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, t('SELECT_STORE', 'Select Store')) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, businessName), /*#__PURE__*/_react.default.createElement(_EnChevronDown.default, null)), /*#__PURE__*/_react.default.createElement(_styles.SubTitle, null, t('DELIVERY_TYPE', 'Delivery type'), ':'), /*#__PURE__*/_react.default.createElement("div", {
-    className: "order-types"
-  }, /*#__PURE__*/_react.default.createElement(OrderTypeSelectorHeader, null))));
+  }, /*#__PURE__*/_react.default.createElement(_AiOutlineLeft.default, null), windowSize.width > 768 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, t('BACK_STORE', 'Back to Store')))));
 };
 
 exports.CartInfo = CartInfo;

@@ -9,8 +9,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _orderingComponents = require("ordering-components");
 
-var _reactLoadingSkeleton = _interopRequireDefault(require("react-loading-skeleton"));
-
 var _SingleProductCard = require("../SingleProductCard");
 
 var _NotFoundSource = require("../../../../../components/NotFoundSource");
@@ -79,10 +77,7 @@ var BusinessProductsListUI = function BusinessProductsListUI(props) {
     return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
       key: i
     }, props));
-  }), /*#__PURE__*/_react.default.createElement(_styles.ProductsContainer, null, windowSize.width > 850 && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, isBusinessLoading ? /*#__PURE__*/_react.default.createElement(_reactLoadingSkeleton.default, {
-    width: 100,
-    height: 30
-  }) : /*#__PURE__*/_react.default.createElement("h2", null, t('MENU', 'Menu'), " ")), (category === null || category === void 0 ? void 0 : category.id) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, windowSize.width > 850 && /*#__PURE__*/_react.default.createElement("h3", null, category === null || category === void 0 ? void 0 : category.name), /*#__PURE__*/_react.default.createElement(_styles.ProductsListing, null, (_categoryState$produc = categoryState.products) === null || _categoryState$produc === void 0 ? void 0 : _categoryState$produc.map(function (product) {
+  }), /*#__PURE__*/_react.default.createElement(_styles.ProductsContainer, null, (category === null || category === void 0 ? void 0 : category.id) && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, windowSize.width > 850 && /*#__PURE__*/_react.default.createElement("h3", null, category === null || category === void 0 ? void 0 : category.name), /*#__PURE__*/_react.default.createElement(_styles.ProductsListing, null, (_categoryState$produc = categoryState.products) === null || _categoryState$produc === void 0 ? void 0 : _categoryState$produc.map(function (product) {
     return /*#__PURE__*/_react.default.createElement(_SingleProductCard.SingleProductCard, {
       key: product === null || product === void 0 ? void 0 : product.id,
       isSoldOut: product.inventoried && !product.quantity,

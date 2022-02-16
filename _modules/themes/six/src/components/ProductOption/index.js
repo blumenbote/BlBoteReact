@@ -43,14 +43,14 @@ var ProductOptionUI = function ProductOptionUI(props) {
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
 
-  var maxMin = "(".concat(t('MIN', 'Min'), ": ").concat(option.min, " / ").concat(t('MAX', 'Max'), ": ").concat(option.max, ")");
+  var maxMin = "".concat(t('MIN', 'Min'), ". ").concat(option.min, " - ").concat(t('MAX', 'Max'), ". ").concat(option.max);
 
   if (option.min === 1 && option.max === 1) {
     maxMin = t('REQUIRED', 'Required');
   } else if (option.min === 0 && option.max > 0) {
-    maxMin = "(".concat(t('MAX', 'Max'), ": ").concat(option.max, ")");
+    maxMin = "".concat(t('MAX', 'Max'), ". ").concat(option.max);
   } else if (option.min > 0 && option.max === 0) {
-    maxMin = "(".concat(t('MIN', 'Min'), ": ").concat(option.min, ")");
+    maxMin = "".concat(t('MIN', 'Min'), ". ").concat(option.min);
   }
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, (_props$beforeElements = props.beforeElements) === null || _props$beforeElements === void 0 ? void 0 : _props$beforeElements.map(function (BeforeElement, i) {

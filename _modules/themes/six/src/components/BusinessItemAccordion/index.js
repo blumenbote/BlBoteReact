@@ -9,23 +9,11 @@ exports.BusinessItemAccordion = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _IosArrowDown = _interopRequireDefault(require("@meronex/icons/ios/IosArrowDown"));
-
-var _FiClock = _interopRequireDefault(require("@meronex/icons/fi/FiClock"));
-
-var _BiStoreAlt = _interopRequireDefault(require("@meronex/icons/bi/BiStoreAlt"));
-
-var _VscTrash = _interopRequireDefault(require("@meronex/icons/vsc/VscTrash"));
-
 var _orderingComponents = require("ordering-components");
 
 var _styledComponents = require("styled-components");
 
-var _utils = require("../../../../../utils");
-
 var _styles = require("./styles");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -46,7 +34,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var BusinessItemAccordion = function BusinessItemAccordion(props) {
-  var _props$beforeElements, _props$beforeComponen, _theme$images, _theme$images$dummies, _theme$images2, _theme$images2$dummie, _orderState$options, _props$afterComponent, _props$afterElements;
+  var _props$beforeElements, _props$beforeComponen, _props$afterComponent, _props$afterElements;
 
   var uuid = props.uuid,
       isCartPending = props.isCartPending,
@@ -54,17 +42,12 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
       isCheckout = props.isCheckout,
       isClosed = props.isClosed,
       moment = props.moment,
-      business = props.business,
-      orderTotal = props.orderTotal,
       isProducts = props.isProducts,
-      isValidProducts = props.isValidProducts,
       isForceOpenAccordion = props.isForceOpenAccordion,
       isCartOnProductsList = props.isCartOnProductsList,
       handleClearProducts = props.handleClearProducts,
-      handleStoreRedirect = props.handleStoreRedirect,
       handleCartOpen = props.handleCartOpen,
       individualBusinessCart = props.individualBusinessCart;
-  var theme = (0, _styledComponents.useTheme)();
 
   var _useOrder = (0, _orderingComponents.useOrder)(),
       _useOrder2 = _slicedToArray(_useOrder, 1),
@@ -73,10 +56,6 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
       _useLanguage2 = _slicedToArray(_useLanguage, 2),
       t = _useLanguage2[1];
-
-  var _useUtils = (0, _orderingComponents.useUtils)(),
-      _useUtils2 = _slicedToArray(_useUtils, 1),
-      parsePrice = _useUtils2[0].parsePrice;
 
   var _useEvent = (0, _orderingComponents.useEvent)(),
       _useEvent2 = _slicedToArray(_useEvent, 1),
@@ -191,32 +170,14 @@ var BusinessItemAccordion = function BusinessItemAccordion(props) {
     onClick: function onClick(e) {
       return toggleAccordion(e);
     }
-  }, /*#__PURE__*/_react.default.createElement(_styles.BusinessInfo, null, ((business === null || business === void 0 ? void 0 : business.logo) || ((_theme$images = theme.images) === null || _theme$images === void 0 ? void 0 : (_theme$images$dummies = _theme$images.dummies) === null || _theme$images$dummies === void 0 ? void 0 : _theme$images$dummies.businessLogo)) && !isCartOnProductsList && /*#__PURE__*/_react.default.createElement(_styles.WrapperBusinessLogo, null, /*#__PURE__*/_react.default.createElement(_styles.BusinessLogo, {
-    bgimage: (business === null || business === void 0 ? void 0 : business.logo) || ((_theme$images2 = theme.images) === null || _theme$images2 === void 0 ? void 0 : (_theme$images2$dummie = _theme$images2.dummies) === null || _theme$images2$dummie === void 0 ? void 0 : _theme$images2$dummie.businessLogo)
-  })), /*#__PURE__*/_react.default.createElement(_styles.ContentInfo, {
-    className: "info"
-  }, /*#__PURE__*/_react.default.createElement("h2", null, business === null || business === void 0 ? void 0 : business.name), (orderState === null || orderState === void 0 ? void 0 : (_orderState$options = orderState.options) === null || _orderState$options === void 0 ? void 0 : _orderState$options.type) === 1 ? /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_FiClock.default, null), (0, _utils.convertHoursToMinutes)(business === null || business === void 0 ? void 0 : business.delivery_time)) : /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_FiClock.default, null), (0, _utils.convertHoursToMinutes)(business === null || business === void 0 ? void 0 : business.pickup_time)))), !isClosed && !!isProducts && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, {
-    className: "total",
-    isCartOnProductsList: isCartOnProductsList
-  }, isValidProducts && orderTotal > 0 && /*#__PURE__*/_react.default.createElement("p", null, parsePrice(orderTotal)), /*#__PURE__*/_react.default.createElement("p", null, t('CART_TOTAL', 'Total'))), isClosed && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, {
+  }, isClosed && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, {
     className: "closed"
-  }, /*#__PURE__*/_react.default.createElement("p", null, t('CLOSED', 'Closed'), " ", moment)), !isClosed && !isProducts && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, null, /*#__PURE__*/_react.default.createElement("p", null, t('NO_PRODUCTS', 'No products'))), /*#__PURE__*/_react.default.createElement(_styles.BusinessActions, null, handleStoreRedirect && !isCartOnProductsList && /*#__PURE__*/_react.default.createElement("span", {
-    ref: businessStore,
-    onClick: function onClick() {
-      return handleStoreRedirect(business === null || business === void 0 ? void 0 : business.slug);
-    }
-  }, /*#__PURE__*/_react.default.createElement(_BiStoreAlt.default, {
-    color: "#CCC"
-  })), !isClosed && !!isProducts && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isCartPending && /*#__PURE__*/_react.default.createElement("span", {
+  }, /*#__PURE__*/_react.default.createElement("p", null, t('CLOSED', 'Closed'), " ", moment)), !isClosed && !isProducts && /*#__PURE__*/_react.default.createElement(_styles.BusinessTotal, null, /*#__PURE__*/_react.default.createElement("p", null, t('NO_PRODUCTS', 'No products'))), /*#__PURE__*/_react.default.createElement(_styles.BusinessActions, null, !isClosed && !!isProducts && /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !isCartPending && /*#__PURE__*/_react.default.createElement("span", {
     ref: businessDelete,
     onClick: function onClick() {
       return handleClearProducts();
     }
-  }, /*#__PURE__*/_react.default.createElement(_VscTrash.default, {
-    color: "#D81212"
-  })), /*#__PURE__*/_react.default.createElement("span", null, /*#__PURE__*/_react.default.createElement(_IosArrowDown.default, {
-    className: "".concat(setRotate)
-  }))))), /*#__PURE__*/_react.default.createElement(_styles.AccordionContent, {
+  }, t('CANCEL_ORDER', 'Cancelar Orden'))))), /*#__PURE__*/_react.default.createElement(_styles.AccordionContent, {
     ref: content,
     style: {
       minHeight: "".concat(setHeight),

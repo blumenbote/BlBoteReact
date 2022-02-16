@@ -17,9 +17,7 @@ var Container = _styledComponents.default.div(_templateObject || (_templateObjec
 
 exports.Container = Container;
 
-var WrapHeader = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 1px solid ", ";\n  margin-bottom: 10px;\n"])), function (props) {
-  return props.theme.colors.borderColor;
-});
+var WrapHeader = _styledComponents.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 10px;\n"])));
 
 exports.WrapHeader = WrapHeader;
 
@@ -28,7 +26,7 @@ var TitleContainer = _styledComponents.default.div(_templateObject3 || (_templat
 exports.TitleContainer = TitleContainer;
 
 var Title = _styledComponents.default.h3(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  font-size: 18px;\n  display: flex;\n  flex-direction: column;\n  color: ", ";\n  text-transform: uppercase;\n  margin: 10px 0;\n\n  span {\n    &:not(:first-child) {\n      color: ", ";\n      font-size: 12px;\n      font-weight: 400;\n    }\n  }\n"])), function (props) {
-  return props.theme.colors.fontSecundary;
+  return props.theme.colors.fontPrimary;
 }, function (props) {
   return props.theme.colors.grayTextColor;
 });

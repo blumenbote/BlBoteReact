@@ -29,7 +29,7 @@ var TopContainer = _styledComponents.default.div(_templateObject2 || (_templateO
 
 exports.TopContainer = TopContainer;
 
-var IconContent = _styledComponents.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  cursor: pointer;\n  margin: 0 5px;\n  background-color: ", ";\n  border-radius: 25px;\n  padding: 5px 20px;\n  display: flex;\n  align-items: center;\n  color: #FFF;\n\n  svg {\n    font-size: 22px;\n  }\n\n  span {\n    ", "\n  }\n"])), function (props) {
+var IconContent = _styledComponents.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  cursor: pointer;\n  margin: 0 5px;\n  background-color: ", ";\n  border-radius: 25px;\n  padding: 12px 60px;\n  display: flex;\n  align-items: center;\n  color: #FFF;\n\n  svg {\n    font-size: 22px;\n  }\n\n  span {\n    ", "\n  }\n"])), function (props) {
   return props.theme.colors.primary;
 }, function (props) {
   var _props$theme;

@@ -5,11 +5,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.WrapperSearch = exports.WrappLayout = exports.WrapProductsCategroy = exports.WrapContent = exports.WrapBusinessList = exports.ProductsNotFound = exports.ProductsContainer = exports.ProductDetail = exports.BackMenu = void 0;
+exports.WrapperSearch = exports.WrappLayout = exports.WrapProductsCategroy = exports.WrapContent = exports.WrapBusinessList = exports.ProductsNotFound = exports.ProductsContainer = exports.ProductDetail = exports.CategoriesTopBar = exports.BackMenu = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -63,7 +63,7 @@ var ProductDetail = _styledComponents.default.div(_templateObject12 || (_templat
 
 exports.ProductDetail = ProductDetail;
 
-var BackMenu = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  top: 15px;\n  right: 10px;\n  z-index: 10;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 100px;\n  cursor: pointer;  \n  svg {    \n    font-size: 1.5rem;\n  }\n\n  @media (min-width: 768px) {\n    right: 25px;\n    ", "\n\n  }\n\n  @media (min-width: 1024px) {\n    right: unset;\n    left: calc(40% - 45px);\n    ", "\n  }\n\n  @media (min-width: 1200px) {\n    right: unset;\n    left: calc(40% - 50px);\n    ", "\n  }\n\n  @media (min-width: 1440px) {\n    right: unset;\n    left: calc(40% - 60px);\n    ", "\n  }\n"])), function (props) {
+var BackMenu = _styledComponents.default.div(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  position: absolute;\n  width: 30px;\n  height: 30px;\n  top: 22px;\n  left: 15px;\n  z-index: 10;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  border-radius: 100px;\n  cursor: pointer;  \n  svg {    \n    font-size: 2rem;\n  }\n\n  @media (min-width: 768px) {\n    left: 25px;\n    ", "\n\n  }\n\n  @media (min-width: 1024px) {\n    left: 45px;\n    top: 35px;\n    ", "\n  }\n"])), function (props) {
   var _props$theme3;
 
   return ((_props$theme3 = props.theme) === null || _props$theme3 === void 0 ? void 0 : _props$theme3.rtl) && (0, _styledComponents.css)(_templateObject14 || (_templateObject14 = _taggedTemplateLiteral(["\n      left: 25px;\n      right: unset;\n    "])));
@@ -71,14 +71,10 @@ var BackMenu = _styledComponents.default.div(_templateObject13 || (_templateObje
   var _props$theme4;
 
   return ((_props$theme4 = props.theme) === null || _props$theme4 === void 0 ? void 0 : _props$theme4.rtl) && (0, _styledComponents.css)(_templateObject15 || (_templateObject15 = _taggedTemplateLiteral(["\n      left: unset;\n      right: calc(40% - 45px);\n    "])));
-}, function (props) {
-  var _props$theme5;
-
-  return ((_props$theme5 = props.theme) === null || _props$theme5 === void 0 ? void 0 : _props$theme5.rtl) && (0, _styledComponents.css)(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n      left: unset;\n      right: calc(40% - 50px);\n    "])));
-}, function (props) {
-  var _props$theme6;
-
-  return ((_props$theme6 = props.theme) === null || _props$theme6 === void 0 ? void 0 : _props$theme6.rtl) && (0, _styledComponents.css)(_templateObject17 || (_templateObject17 = _taggedTemplateLiteral(["\n      left: unset;\n      right: calc(40% - 60px);\n    "])));
 });
 
 exports.BackMenu = BackMenu;
+
+var CategoriesTopBar = _styledComponents.default.div(_templateObject16 || (_templateObject16 = _taggedTemplateLiteral(["\n  display: flex;\n  align-items: center;\n  padding: 15px 35px;\n  h2 {\n    margin-left: 4%;\n  }\n  svg {\n    font-size: 24px;\n  }\n  .arrow-back {\n    font-size: 2rem;\n    cursor: pointer;\n  }\n"])));
+
+exports.CategoriesTopBar = CategoriesTopBar;

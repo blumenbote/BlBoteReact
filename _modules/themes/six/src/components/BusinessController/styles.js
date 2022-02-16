@@ -5,13 +5,17 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.WrapperBusinessLogo = exports.WrapperBusinessCard = exports.NameWrapper = exports.Medadata = exports.ContainerCard = exports.Categories = exports.CallCenterInformationBullet = exports.CallCenterInformation = exports.BusinessTags = exports.BusinessName = exports.BusinessLogo = exports.BusinessInfomation = exports.BusinessInfoItem = exports.BusinessInfo = exports.BusinessHero = exports.BusinessHeader = exports.BusinessContent = void 0;
+exports.WrapperBusinessLogo = exports.WrapperBusinessCard = exports.Screen = exports.NameWrapper = exports.Medadata = exports.ContainerCard = exports.Categories = exports.CallCenterInformationBullet = exports.CallCenterInformation = exports.BusinessTags = exports.BusinessName = exports.BusinessLogo = exports.BusinessInfomation = exports.BusinessInfoItem = exports.BusinessInfo = exports.BusinessHero = exports.BusinessHeader = exports.BusinessContent = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28;
+var _starbucksHomeImage = _interopRequireDefault(require("../../../../../../template/assets/starbucksHomeImage.png"));
+
+var _starbucksHomeBackground = _interopRequireDefault(require("../../../../../../template/assets/starbucksHomeBackground.svg"));
+
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13, _templateObject14, _templateObject15, _templateObject16, _templateObject17, _templateObject18, _templateObject19, _templateObject20, _templateObject21, _templateObject22, _templateObject23, _templateObject24, _templateObject25, _templateObject26, _templateObject27, _templateObject28, _templateObject29;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -160,3 +164,11 @@ var BusinessInfomation = _styledComponents.default.div(_templateObject27 || (_te
 });
 
 exports.BusinessInfomation = BusinessInfomation;
+
+var Screen = _styledComponents.default.div(_templateObject29 || (_templateObject29 = _taggedTemplateLiteral(["\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  width: 100vw;\n  height: 100vh;\n  background-color: #E8F0ED;\n  img {\n    margin: 60px;\n  }\n  .message {\n    color: ", ";\n    background-color: ", ";\n    padding: 22px 68px;\n    border-radius: 100px;\n    font-weight: 600;\n    font-size: 38px;\n  }\n"])), function (props) {
+  return props.theme.colors.primaryContrast;
+}, function (props) {
+  return props.theme.colors.primary;
+});
+
+exports.Screen = Screen;

@@ -5,11 +5,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.WrapperSearch = exports.PreviousOrders = exports.MapWrapper = exports.ListWrapper = exports.ErrorMessage = exports.BusinessesTitle = exports.BusinessList = exports.BusinessFilter = exports.BusinessContent = exports.BusinessContainer = void 0;
+exports.WrapperSearch = exports.StartButton = exports.PreviousOrders = exports.MapWrapper = exports.ListWrapper = exports.ErrorMessage = exports.BusinessesTitle = exports.BusinessList = exports.BusinessFilter = exports.BusinessContent = exports.BusinessContainer = void 0;
 
 var _styledComponents = _interopRequireWildcard(require("styled-components"));
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13;
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -67,3 +67,7 @@ var BusinessFilter = _styledComponents.default.div(_templateObject11 || (_templa
 });
 
 exports.BusinessFilter = BusinessFilter;
+
+var StartButton = _styledComponents.default.button(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n  \n"])));
+
+exports.StartButton = StartButton;

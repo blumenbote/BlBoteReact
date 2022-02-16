@@ -17,6 +17,8 @@ var _styles = require("./styles");
 
 var _Tabs = require("../../styles/Tabs");
 
+var _product = _interopRequireDefault(require("../../../../../../template/assets/images/dummies/product.png"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -52,7 +54,9 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
 
   var ProductCategories = function ProductCategories() {
     return categories && categories.length && categories.map(function (category) {
-      return /*#__PURE__*/_react.default.createElement(_Tabs.Tab, {
+      var _category$products$;
+
+      return /*#__PURE__*/_react.default.createElement(_styles.CategoryCard, {
         key: category.name,
         className: "category ".concat(category.id === 'featured' ? 'special' : ''),
         active: (categorySelected === null || categorySelected === void 0 ? void 0 : categorySelected.id) === category.id,
@@ -61,7 +65,11 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
         },
         borderBottom: !sideCategory,
         vertical: sideCategory
-      }, category.name);
+      }, /*#__PURE__*/_react.default.createElement("img", {
+        src: category !== null && category !== void 0 && category.image ? category.image : category !== null && category !== void 0 && category.products.find(function (product) {
+          return typeof product.images === 'string' && product.images.length > 0;
+        }) ? category === null || category === void 0 ? void 0 : (_category$products$ = category.products[0]) === null || _category$products$ === void 0 ? void 0 : _category$products$.images : _product.default
+      }), category.name);
     });
   };
 
@@ -73,15 +81,8 @@ var BusinessProductsCategoriesUI = function BusinessProductsCategoriesUI(props) 
     return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
       key: i
     }, props));
-  }), /*#__PURE__*/_react.default.createElement(_styles.CategoriesContainer, {
-    featured: featured,
-    vertical: sideCategory
-  }, !isSkeleton ? /*#__PURE__*/_react.default.createElement(_Tabs.Tabs, {
-    variant: "primary",
-    vertical: sideCategory
-  }, openBusinessInformation ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(ProductCategories, null)) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sideCategory ? /*#__PURE__*/_react.default.createElement(ProductCategories, null) : /*#__PURE__*/_react.default.createElement(_AutoScroll.AutoScroll, null, /*#__PURE__*/_react.default.createElement(ProductCategories, null)))) : /*#__PURE__*/_react.default.createElement(_Tabs.Tabs, {
-    variant: "primary",
-    vertical: sideCategory
+  }), /*#__PURE__*/_react.default.createElement(_styles.CategoriesContainer, null, !isSkeleton ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, openBusinessInformation ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(ProductCategories, null)) : /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, sideCategory ? /*#__PURE__*/_react.default.createElement(ProductCategories, null) : /*#__PURE__*/_react.default.createElement(_AutoScroll.AutoScroll, null, /*#__PURE__*/_react.default.createElement(ProductCategories, null)))) : /*#__PURE__*/_react.default.createElement(_Tabs.Tabs, {
+    variant: "primary"
   }, _toConsumableArray(Array(4).keys()).map(function (i) {
     return /*#__PURE__*/_react.default.createElement(_Tabs.Tab, {
       key: i

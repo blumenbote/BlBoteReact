@@ -63,7 +63,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // import BusinessInformation from '../BusinessInformation'
 var BusinessControllerUI = function BusinessControllerUI(props) {
-  var _props$beforeElements, _props$beforeComponen, _theme$images, _theme$images$dummies, _theme$images2, _theme$images2$dummie, _orderState$options, _business$available_d, _business$busy_driver, _business$active_orde, _business$reviews, _business$reviews2, _business$reviews3, _props$afterComponent, _props$afterElements;
+  var _props$beforeElements, _props$beforeComponen, _theme$images, _theme$images$dummies, _theme$images2, _theme$images2$dummie, _orderState$options, _business$available_d, _business$busy_driver, _business$active_orde, _business$reviews, _business$reviews2, _business$reviews3, _theme$images3, _theme$images3$genera, _theme$images4, _theme$images4$genera, _props$afterComponent, _props$afterElements;
 
   var isSkeleton = props.isSkeleton,
       business = props.business,
@@ -72,7 +72,9 @@ var BusinessControllerUI = function BusinessControllerUI(props) {
       orderType = props.orderType,
       isCustomLayout = props.isCustomLayout,
       isShowCallcenterInformation = props.isShowCallcenterInformation,
-      handleShowBusinessInfo = props.handleShowBusinessInfo;
+      handleShowBusinessInfo = props.handleShowBusinessInfo,
+      isButton = props.isButton,
+      buttonMessage = props.buttonMessage;
   var theme = (0, _styledComponents.useTheme)();
 
   var _useLanguage = (0, _orderingComponents.useLanguage)(),
@@ -122,7 +124,7 @@ var BusinessControllerUI = function BusinessControllerUI(props) {
     return /*#__PURE__*/_react.default.createElement(BeforeComponent, _extends({
       key: i
     }, props));
-  }), /*#__PURE__*/_react.default.createElement(_styles.ContainerCard, {
+  }), !isButton ? /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_styles.ContainerCard, {
     isSkeleton: isSkeleton
   }, /*#__PURE__*/_react.default.createElement(_styles.WrapperBusinessCard, {
     isSkeleton: isSkeleton,
@@ -190,7 +192,16 @@ var BusinessControllerUI = function BusinessControllerUI(props) {
       });
     },
     closeOnBackdrop: false
-  }), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
+  })) : /*#__PURE__*/_react.default.createElement(_styles.Screen, {
+    onClick: function onClick() {
+      return handleClick(business);
+    }
+  }, (theme === null || theme === void 0 ? void 0 : (_theme$images3 = theme.images) === null || _theme$images3 === void 0 ? void 0 : (_theme$images3$genera = _theme$images3.general) === null || _theme$images3$genera === void 0 ? void 0 : _theme$images3$genera.starbucksHomeLogo) && /*#__PURE__*/_react.default.createElement("img", {
+    src: theme === null || theme === void 0 ? void 0 : (_theme$images4 = theme.images) === null || _theme$images4 === void 0 ? void 0 : (_theme$images4$genera = _theme$images4.general) === null || _theme$images4$genera === void 0 ? void 0 : _theme$images4$genera.starbucksHomeLogo,
+    alt: "logo"
+  }), /*#__PURE__*/_react.default.createElement("div", {
+    className: "message"
+  }, buttonMessage)), (_props$afterComponent = props.afterComponents) === null || _props$afterComponent === void 0 ? void 0 : _props$afterComponent.map(function (AfterComponent, i) {
     return /*#__PURE__*/_react.default.createElement(AfterComponent, _extends({
       key: i
     }, props));

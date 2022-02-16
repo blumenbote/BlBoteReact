@@ -37,7 +37,7 @@ var LeftHeader = _styledComponents.default.div(_templateObject5 || (_templateObj
 
 exports.LeftHeader = LeftHeader;
 
-var RightHeader = _styledComponents.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  align-self: center;\n  display: flex;\n"])));
+var RightHeader = _styledComponents.default.div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  position: absolute;\n  right: 51px;\n  top: 30px;\n  align-self: center;\n  display: flex;\n  z-index: 9;\n"])));
 
 exports.RightHeader = RightHeader;
 
