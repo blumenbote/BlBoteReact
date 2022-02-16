@@ -178,46 +178,12 @@ const CheckoutUI = (props) => {
             </React.Fragment>))}
           {props.beforeComponentsSectionOne?.map((BeforeComponent, i) => (
             <BeforeComponent key={i} {...props} />))}
-          {!props.isHideSectionOne && (
-            (businessDetails?.loading || cartState.loading) ? (
-              <div style={{ width: '100%', marginBottom: '20px' }}>
-                <Skeleton height={35} style={{ marginBottom: '10px' }} />
-                <Skeleton height={150} />
-              </div>
-            ) : (
-              <AddressDetails
-                location={businessDetails?.business?.location}
-                businessLogo={businessDetails?.business?.logo || theme.images?.dummies?.businessLogo}
-                isCartPending={cart?.status === 2}
-                businessId={cart?.business_id}
-                apiKey={configs?.google_maps_api_key?.value}
-                mapConfigs={mapConfigs}
-                isCustomerMode={isCustomerMode}
-              />
-            )
-          )}
           {props.beforeElementsSectionTwo?.map((BeforeElement, i) => (
             <React.Fragment key={i}>
               {BeforeElement}
             </React.Fragment>))}
           {props.beforeComponentsSectionTwo?.map((BeforeComponent, i) => (
             <BeforeComponent key={i} {...props} />))}
-          {!props.isHideSectionTwo && (
-            <MomentWrapper>
-              {cartState.loading || (isCustomerMode && !customerState?.user?.id) ? (
-                <div>
-                  <Skeleton height={35} style={{ marginBottom: '10px' }} />
-                </div>
-              ) : (
-                <div className='delivery-time-section'>
-                  <SectionTitle>
-                    <h2>{t('SELECT_DELIVERY_TIME', 'Select delivery time')}</h2>
-                  </SectionTitle>
-                  <MomentContent isCheckout />
-                </div>
-              )}
-            </MomentWrapper>
-          )}
           {props.beforeElementsSectionThree?.map((BeforeElement, i) => (
             <React.Fragment key={i}>
               {BeforeElement}

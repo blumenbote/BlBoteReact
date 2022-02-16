@@ -180,6 +180,7 @@ export const BackMenu = styled.div`
 
   @media (min-width: 1024px) {
     left: 45px;
+    top: 35px;
     ${props => props.theme?.rtl && css`
       left: unset;
       right: calc(40% - 45px);

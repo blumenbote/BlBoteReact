@@ -4,7 +4,6 @@ import { useLanguage, useEvent } from 'ordering-components'
 import { Container, NotCarts } from './styles'
 
 import { Cart } from '../Cart'
-import { Button } from '../../../../../styles/Buttons'
 
 export const CartContent = (props) => {
   const {
@@ -26,11 +25,6 @@ export const CartContent = (props) => {
 
   const handleSetCurrentCartUuid = () => {
     setCurrentCartUuid(null)
-  }
-
-  const handleGoToPage = (data) => {
-    // props.onClose()
-    events.emit('go_to_page', data)
   }
 
   useEffect(() => {
@@ -76,12 +70,6 @@ export const CartContent = (props) => {
             <img src={theme.images?.general?.emptyCart} alt='Empty cart' width='150px' loading='lazy' />
             <h1>{t('CARTS_NOT_FOUND', 'Start your next order')}</h1>
             <p>{t('CART_METHOD_DESCRIOPTION', 'As you add menu items,they´ll appear here.You´ll have a chence to review before placing your order.')}</p>
-            <Button
-              color='primary'
-              onClick={() => handleGoToPage({ page: 'search' })}
-            >
-              {t('ADD_ITEM', 'Add items ')}
-            </Button>
           </NotCarts>
         )}
       </Container>

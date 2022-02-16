@@ -114,28 +114,6 @@ export const CartInfo = (props) => {
           )}
         </HeaderText>
       </BackHeader>
-      <InfoWrapper>
-        <OrderReview>{t('REVIEW_ORDER', 'Review Order')} &nbsp; ({' '}{cart?.products?.length}{' '})</OrderReview>
-        <PreTime>
-          {t('PREP_TIME', 'Prep time')}{' '}{':'}{' '}
-          {options?.moment
-            ? parseDate(options?.moment, { outputFormat: configs?.dates_moment_format?.value })
-            : t('ASAP_ABBREVIATION', 'ASAP')}
-        </PreTime>
-        <SubTitle>{t('STORE', 'Store')}{':'}</SubTitle>
-        <PickStore onClick={() => handleGoToPage({ page: 'search' })}>
-          {!businessName ? (
-            <>{t('SELECT_STORE', 'Select Store')}</>
-          ) : (
-            <>{businessName}</>
-          )}
-          <EnChevronDown />
-        </PickStore>
-        <SubTitle>{t('DELIVERY_TYPE', 'Delivery type')}{':'}</SubTitle>
-        <div className='order-types'>
-          <OrderTypeSelectorHeader />
-        </div>
-      </InfoWrapper>
     </Container>
   )
 }

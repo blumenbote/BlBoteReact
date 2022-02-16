@@ -15,13 +15,16 @@ export const ProductContainer = styled.div`
     flex-wrap: nowrap;
     overflow: auto;
     padding: 0;
-    height: 83vh;
+    height: 99vh;
     overflow-y: scroll;
   }
 `
 
 export const ProductTopBar = styled.div`
-  width: 100vw; 
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  min-height: 102px;
   padding: 0px 16px 0px 52px;
   box-sizing: border-box;
   @media (min-width: 1024px) {

@@ -54,8 +54,12 @@ export const LeftHeader = styled.div`
   display: flex;
 `
 export const RightHeader = styled.div`
+  position: absolute;
+  right: 51px;
+  top: 30px;
   align-self: center;
   display: flex;
+  z-index: 9;
 `
 export const Menu = styled.div`
   display: flex;

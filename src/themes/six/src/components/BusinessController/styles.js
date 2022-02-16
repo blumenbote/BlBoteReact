@@ -335,7 +335,7 @@ export const Screen = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: calc(100vh - 75px);
+  height: 100vh;
   background-color: #E8F0ED;
   img {
     margin: 60px;

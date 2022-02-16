@@ -60,8 +60,8 @@ export const WrapperProductImage = styled.div`
   height: 55px;
   width: 55px;
   padding: 3px;
-  border: 1px solid ${props => props.theme.colors.primary};
-  border-radius: 50%;
+  border-radius: 8px;
+  background-color: ${props => props?.theme?.colors?.secundaryBackground};
   box-sizing: border-box;
   @media (min-width: 361px) {
     height: 80px;

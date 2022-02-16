@@ -25,7 +25,7 @@ export const IconContent = styled.div`
   margin: 0 5px;
   background-color: ${props => props.theme.colors.primary};
   border-radius: 25px;
-  padding: 5px 20px;
+  padding: 12px 60px;
   display: flex;
   align-items: center;
   color: #FFF;

@@ -25,12 +25,11 @@ export const AccordionSection = styled.div`
 export const Accordion = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   cursor: ${({ isClosed }) => isClosed ? 'not-allowed' : 'pointer'};
   transition: background-color 0.6s ease;
   position: relative;
   padding: 10px;
-  background: #F8F8F8;
 
   ${props => props.isClosed && css`
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
@@ -214,6 +213,7 @@ export const BusinessActions = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  color: ${props => props?.theme?.colors?.primary};
 
   span {
     height: 22px;

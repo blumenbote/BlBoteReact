@@ -1,19 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
-import IosArrowDown from '@meronex/icons/ios/IosArrowDown'
-import FiClock from '@meronex/icons/fi/FiClock'
-import BiStoreAlt from '@meronex/icons/bi/BiStoreAlt'
-import VscTrash from '@meronex/icons/vsc/VscTrash'
 import { useOrder, useLanguage, useUtils, useEvent } from 'ordering-components'
 import { useTheme } from 'styled-components'
-import { convertHoursToMinutes } from '../../../../../utils'
 import {
   AccordionSection,
   Accordion,
   AccordionContent,
-  WrapperBusinessLogo,
-  BusinessLogo,
-  ContentInfo,
-  BusinessInfo,
   BusinessTotal,
   BusinessActions
 } from './styles'
@@ -25,21 +16,15 @@ export const BusinessItemAccordion = (props) => {
     isCheckout,
     isClosed,
     moment,
-    business,
-    orderTotal,
     isProducts,
-    isValidProducts,
     isForceOpenAccordion,
     isCartOnProductsList,
     handleClearProducts,
-    handleStoreRedirect,
     handleCartOpen,
     individualBusinessCart
   } = props
-  const theme = useTheme()
   const [orderState] = useOrder()
   const [, t] = useLanguage()
-  const [{ parsePrice }] = useUtils()
   const [events] = useEvent()
   const [setActive, setActiveState] = useState('')
   const [setHeight] = useState('0px')
@@ -117,33 +102,6 @@ export const BusinessItemAccordion = (props) => {
             className={`accordion ${setActive}`}
             onClick={(e) => toggleAccordion(e)}
           >
-            <BusinessInfo>
-              {(business?.logo || theme.images?.dummies?.businessLogo) && !isCartOnProductsList && (
-                <WrapperBusinessLogo>
-                  <BusinessLogo bgimage={business?.logo || theme.images?.dummies?.businessLogo} />
-                </WrapperBusinessLogo>
-              )}
-              <ContentInfo className='info'>
-                <h2>{business?.name}</h2>
-                {orderState?.options?.type === 1 ? (
-                  <span>
-                    <FiClock />
-                    {convertHoursToMinutes(business?.delivery_time)}
-                  </span>
-                ) : (
-                  <span>
-                    <FiClock />
-                    {convertHoursToMinutes(business?.pickup_time)}
-                  </span>
-                )}
-              </ContentInfo>
-            </BusinessInfo>
-            {!isClosed && !!isProducts && (
-              <BusinessTotal className='total' isCartOnProductsList={isCartOnProductsList}>
-                {isValidProducts && orderTotal > 0 && <p>{parsePrice(orderTotal)}</p>}
-                <p>{t('CART_TOTAL', 'Total')}</p>
-              </BusinessTotal>
-            )}
             {isClosed && (
               <BusinessTotal className='closed'>
                 <p>{t('CLOSED', 'Closed')} {moment}</p>
@@ -155,14 +113,6 @@ export const BusinessItemAccordion = (props) => {
               </BusinessTotal>
             )}
             <BusinessActions>
-              {handleStoreRedirect && !isCartOnProductsList && (
-                <span
-                  ref={businessStore}
-                  onClick={() => handleStoreRedirect(business?.slug)}
-                >
-                  <BiStoreAlt color='#CCC' />
-                </span>
-              )}
               {!isClosed && !!isProducts && (
                 <>
                   {!isCartPending && (
@@ -170,12 +120,9 @@ export const BusinessItemAccordion = (props) => {
                       ref={businessDelete}
                       onClick={() => handleClearProducts()}
                     >
-                      <VscTrash color='#D81212' />
+                      {t('CANCEL_ORDER', 'Cancelar Orden')}
                     </span>
                   )}
-                  <span>
-                    <IosArrowDown className={`${setRotate}`} />
-                  </span>
                 </>
               )}
             </BusinessActions>
