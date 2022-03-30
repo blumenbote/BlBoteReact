@@ -50,7 +50,7 @@ export const App = () => {
 
   const isWalletEnabled = configs?.wallet_enabled?.value === '1'
   const isEmailVerifyRequired = auth && (configs?.verification_email_required?.value === '1' || false) && !user?.email_verified
-  const isPhoneVerifyRequired = auth && (configs?.verification_phone_required?.value === '1' || true) && configs?.twilio_service_enabled?.value === '1' && !user?.phone_verified
+  const isPhoneVerifyRequired = auth && (configs?.verification_phone_required?.value === '1' || false) && configs?.twilio_service_enabled?.value === '1' && !user?.phone_verified
   const isUserVerifyRequired = isEmailVerifyRequired || isPhoneVerifyRequired
 
   console.log(isUserVerifyRequired, configs);
