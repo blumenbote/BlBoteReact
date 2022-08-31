@@ -85,6 +85,7 @@ export const BusinessInformationUI = (props) => {
     setModalImage(true)
   }
 
+  return <></>
   // return (
   //   <>
   //     {props.beforeElements?.map((BeforeElement, i) => (
