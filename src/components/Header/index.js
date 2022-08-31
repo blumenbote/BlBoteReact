@@ -178,7 +178,7 @@ export const Header = (props) => {
               isCustomerMode={isCustomerMode}
             />
             <LogoHeader
-              onClick={() => handleGoToPage({ page: orderState?.options?.address?.location && !isCustomerMode ? 'search' : 'home' })}
+              onClick={() => handleGoToPage({ page: 'home' })}
             >
               <img alt='Logotype' width='170px' height='45px' src={isHome ? theme?.images?.logos?.logotypeInvert : theme?.images?.logos?.logotype} loading='lazy' />
               <img alt='Isotype' width='35px' height='45px' src={isHome ? theme?.images?.logos?.isotypeInvert : theme?.images?.logos?.isotype} loading='lazy' />
