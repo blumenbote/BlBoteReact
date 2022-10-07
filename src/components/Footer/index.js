@@ -36,6 +36,7 @@ export const Footer = () => {
 
   return (
     <>
+      <h2>TEST</h2>
       {
         footerState.body && (
           <div dangerouslySetInnerHTML={{
